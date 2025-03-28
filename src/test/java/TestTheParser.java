@@ -11,6 +11,7 @@ public class TestTheParser {
 	private TheParser parser;
 	private Vector<TheToken> tokens;
 
+    /*
 	@Test
 	public void testParserInputThree() throws IOException {
 		System.out.println("testing input ==========================================================================");
@@ -21,7 +22,7 @@ public class TestTheParser {
 		parser = new TheParser(tokens);
 		assertDoesNotThrow(() -> parser.run());
 	}
-    /*
+    */
 	@Test
 	public void testParserInputThree() throws IOException {
 		System.out.println("testing statements ==========================================================================");
@@ -64,6 +65,4 @@ public class TestTheParser {
 		parser = new TheParser(tokens);
 		assertDoesNotThrow(() -> parser.run());
 	}
-    */
-	
 }

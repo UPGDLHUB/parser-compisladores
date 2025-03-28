@@ -18,7 +18,7 @@ public class TheLexer {
 	private File file;
 	private Automata dfa;
 	private Vector<TheToken> tokens;
-    //private String[] KEYWORDS = {"abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "continue", "const", "default", "do", "double", "else", "enum", "exports", "extends", "final", "finally", "float", "for", "if", "implements", "import", "instanceof", "int", "interface", "long", "module", "native", "new", "package", "private", "protected", "public", "requires", "return", "short", "static", "super", "switch", "synchronized", "throw", "throws", "transient", "try", "var", "void", "volatile", "while"};
+    private String[] KEYWORDS = {"abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "continue", "const", "default", "do", "double", "else", "enum", "exports", "extends", "final", "finally", "float", "for", "if", "implements", "import", "instanceof", "int", "interface", "long", "module", "native", "new", "package", "private", "protected", "public", "requires", "return", "short", "static", "super", "switch", "synchronized", "throw", "throws", "transient", "try", "var", "void", "volatile", "while"};
 	
 	public TheLexer(File file) {
         this.file = file;
@@ -125,10 +125,9 @@ public class TheLexer {
 			} else {
 				if (dfa.isAcceptState(currentState)) {
 					String stateName = dfa.getAcceptStateName(currentState);
-                    /*
                     if(stateName == "IDENTIFIER" && Arrays.asList(this.KEYWORDS).contains(string)){
-                        //stateName = "KEYWORD";
-                    }*/
+                        stateName = "KEYWORD";
+                    }
 					tokens.add(new TheToken(string, stateName));
                     prevTheToken = stateName;
 				} else if (currentState != "s0") {

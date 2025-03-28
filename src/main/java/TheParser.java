@@ -16,31 +16,34 @@ public class TheParser {
 	
 	private void RULE_PROGRAM() {
 		System.out.println("- RULE_PROGRAM");
-		if(tokens.get(currentToken).getType().equals("CLASS")){
-			currentToken++;
-			System.out.println("- CLASS");
-		} else{
-			error(1);
-		}
-		if(tokens.get(currentToken).getType().equals("IDENTIFIER")){
-			currentToken++;
-			System.out.println("- IDENTIFIER");
-		} else{
-			error(1);
-		}
-		if (tokens.get(currentToken).getValue().equals("{")) {
-			currentToken++;
-			System.out.println("- {");
-		} else {
-			error(1);
-		}
-		RULE_METHODS();
-		if (tokens.get(currentToken).getValue().equals("}")) {
-			currentToken++;
-			System.out.println("- }");
-		} else {
-			error(2);
-		}
+
+        if(!tokens.get(currentToken).getType().equals("KEYWORD"))
+            error(1);
+
+        
+        if(!tokens.get(currentToken).getValue().equals("class"))
+            error(1);
+        System.out.println("- CLASS");
+
+        currentToken++;
+
+        if(!tokens.get(currentToken).getType().equals("IDENTIFIER"))
+            error(1);
+        System.out.println("- IDENTIFIER");
+
+        currentToken++;
+
+        if(!tokens.get(currentToken).getValue().equals("{"))
+            error(1);
+        System.out.println("- {");
+
+        currentToken++;
+
+        RULE_METHODS();
+ 
+        if(!tokens.get(currentToken).getValue().equals("}"))
+            error(1);	
+        System.out.println("- }");
 	}
 
 	public void RULE_METHODS(){
