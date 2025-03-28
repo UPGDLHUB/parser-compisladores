@@ -128,28 +128,41 @@ public class TheParser {
 
 	public void RULE_TYPE(){
 		System.out.println("---- RULE_TYPE");
-		if(tokens.get(currentToken).getType().equals("INTEGER")){
-			currentToken++;
-			System.out.println("-- INTEGER");
-		} else if(tokens.get(currentToken).getType().equals("BOOLEAN")){
-			currentToken++;
-			System.out.println("-- BOOLEAN");
-		} else if(tokens.get(currentToken).getType().equals("FLOAT")){
-			currentToken++;
-			System.out.println("-- FLOAT");
-		} else if (tokens.get(currentToken).getType().equals("VOID")) {
-			currentToken++;
-			System.out.println("-- VOID");
-		} else if(tokens.get(currentToken).getType().equals("CHAR")){
-			currentToken++;
-			System.out.println("-- CHAR");
-		} else if (tokens.get(currentToken).getType().equals("STRING")){
-			currentToken++;
-			System.out.println("-- STRING");
-		} else{
-			error(4);
-		}
-	}
+        System.out.println(tokens.get(currentToken).getValue());
+
+        if(!tokens.get(currentToken).getType().equals("KEYWORD"))
+            error(3);
+
+        switch(tokens.get(currentToken).getValue()){
+            case "int":
+			    System.out.println("-- INTEGER");
+                break;
+
+            case "boolean":
+		    	System.out.println("-- BOOLEAN");
+                break;
+
+            case "float":
+                System.out.println("-- FLOAT");
+                break;
+
+            case "void":
+			    System.out.println("-- VOID");
+                break;
+
+            case "char":
+			    System.out.println("-- CHAR");
+                break;
+            case "String":
+			    System.out.println("-- STRING");
+                break;
+
+            default:
+                error(4);
+        }
+
+        currentToken++;
+    }
 
 	public void RULE_PARAMS(){
 		System.out.println("----- RULE_PARAMS");
