@@ -21,7 +21,7 @@ public class TheLexer {
     //private String[] KEYWORDS = {"abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "continue", "const", "default", "do", "double", "else", "enum", "exports", "extends", "final", "finally", "float", "for", "if", "implements", "import", "instanceof", "int", "interface", "long", "module", "native", "new", "package", "private", "protected", "public", "requires", "return", "short", "static", "super", "switch", "synchronized", "throw", "throws", "transient", "try", "var", "void", "volatile", "while"};
 	
 	public TheLexer(File file) {
-		this.file = file;
+        this.file = file;
 		tokens = new Vector<>();
 		dfa = new Automata();
 
@@ -83,22 +83,22 @@ public class TheLexer {
         dfa.addTransition("s0", "\'", "char_content");
         dfa.addMultipleTransitions("char_content", "$_abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ012345679", "char_end");
         dfa.addTransition("char_content", "\\", "char_escape");
-        dfa.addMultipleTransitions("char_escape", "'nrtbf", "char_end");
-        dfa.addTransition("char_scape", "\"", "char_end");
+        dfa.addMultipleTransitions("char_escape", "nrtbfx", "char_end");
+        dfa.addTransition("char_escape", "'", "char_quote");
+        dfa.addTransition("char_quote", "'", "char_end"); 
         dfa.addTransition("char_end", "\'", "char");
 
 
-		dfa.addAcceptState("s1", "INTEGER");
 		dfa.addAcceptState("binary", "BINARY");
         dfa.addAcceptState("hex", "HEX");
         dfa.addAcceptState("octal", "OCTAL");
-        dfa.addAcceptState("integer", "INTEGER");
+        dfa.addAcceptState("integer", "INT");
         dfa.addAcceptState("decimal", "DECIMAL");
         dfa.addAcceptState("decimal_exp", "DECIMAL");
         dfa.addAcceptState("identifier", "IDENTIFIER");
         dfa.addAcceptState("string", "STRING");
         dfa.addAcceptState("char", "CHAR");
-
+        dfa.addAcceptState("char_quote", "CHAR");
 	}
 	
 	public void run() throws IOException {

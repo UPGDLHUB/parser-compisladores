@@ -110,6 +110,18 @@ public class TheParser {
 		}
 	}
 
+    public void RULE_FOR(){
+        error(1);
+    }
+
+    public void RULE_DO_WHILE(){
+        error(1);
+    }
+
+    public void RULE_SWITCH(){
+        error(1);
+    }
+
 	public void RULE_TYPE(){
 		System.out.println("---- RULE_TYPE");
 		if(tokens.get(currentToken).getType().equals("INTEGER")){
