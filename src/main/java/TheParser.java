@@ -76,44 +76,77 @@ public class TheParser {
         currentToken++;
         System.out.println("-- {");
 
-		RULE_BODY();
 
-		if(!tokens.get(currentToken).getValue().equals("}"))
-            error(2);
+		while(!tokens.get(currentToken).getValue().equals("}")){ 
+		    System.out.println(tokens.get(currentToken));
+            RULE_BODY();
+        }
 
         currentToken++;
         System.out.println("-- }");
 	}
 	
 	public void RULE_BODY() {
-		System.out.println("-- RULE_BODY");
-		var nextToken = currentToken + 1;
-		if(tokens.get(nextToken).getValue().equals("if")){
-			RULE_IF();
-		} else if(tokens.get(nextToken).getValue().equals("while")){
-			RULE_WHILE();
-		} else if(tokens.get(nextToken).getValue().equals("for")){
-			RULE_FOR();
-		} else if(tokens.get(nextToken).getValue().equals("do")){
-			RULE_DO_WHILE();
-		} else if(tokens.get(nextToken).getValue().equals("switch")){
-			RULE_SWITCH();
-		}else {
-			if(tokens.get(nextToken).getValue().equals("return")){
-				RULE_RETURN();
-			} else if(tokens.get(nextToken).getType().equals("IDENTIFIER")){
-				nextToken += 1;
-				if(tokens.get(nextToken).getValue().equals("("))
-					RULE_CALL_METHOD();
-				else
-					RULE_ASSIGNMENT();
-			} //MISSING CONDITION FOR VARIABLE
-			if(tokens.get(currentToken).getValue().equals(";")){
-				currentToken++;
-				System.out.println("-- ;");
-			}
-		}
-	}
+		System.out.println("-- RULE_BODY"); 
+
+        if(tokens.get(currentToken).getValue().equals("}"))
+            return;
+
+
+        if(!(tokens.get(currentToken).getType().equals("KEYWORD") || tokens.get(currentToken).getType().equals("IDENTIFIER")))
+            error(4);
+
+
+        //return, control statements and data types are keywords
+        if(tokens.get(currentToken).getType().equals("KEYWORD")){
+            
+            boolean isControlStatement = true;
+
+            switch(tokens.get(currentToken).getValue()){
+                case "if":
+                    RULE_IF();
+                    currentToken++;
+                    break;
+                case "while":
+                    RULE_WHILE();
+                    currentToken++;
+                    break;
+                case "for":
+                    RULE_FOR();
+                    currentToken++;
+                    break;
+                case "switch":
+                    RULE_SWITCH();
+                    currentToken++;
+                    break;
+                case "do":
+                    RULE_DO_WHILE();
+                    currentToken++;
+                    break;
+                default:
+                    isControlStatement = false;
+            }
+
+            if(isControlStatement)
+                return;
+
+            if(tokens.get(currentToken).getValue().equals("return"))
+                RULE_RETURN();
+            else
+                RULE_VARIABLE();
+            
+        }
+        else{
+            if(tokens.get(currentToken + 1).getValue().equals("="))
+                RULE_ASSIGNMENT();
+            else
+                RULE_CALL_METHOD();
+        }
+
+        if(!tokens.get(currentToken).getValue().equals(";"))
+            error(4);
+        currentToken++;
+    }
 
     public void RULE_FOR(){
         error(1);
@@ -343,9 +376,18 @@ public class TheParser {
 		RULE_TYPE();
 		if(tokens.get(currentToken).getType().equals("IDENTIFIER")){
 			currentToken++;
-			System.out.println("------ IDENTIFIER");
 		}
-		//HOW TO IMPLEMENT EXPRESSION
+        
+        if(tokens.get(currentToken).getValue().equals(";")){
+            return;
+        }
+
+        if(!tokens.get(currentToken).getValue().equals("="))
+            error(4);
+
+        currentToken++;
+        RULE_EXPRESSION();
+        currentToken++;
 	}
 
 	public void RULE_WHILE(){
