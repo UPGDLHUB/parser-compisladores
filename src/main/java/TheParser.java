@@ -39,10 +39,10 @@ public class TheParser {
 
         currentToken++;
 
-        RULE_METHODS();
+        
  
-        if(!tokens.get(currentToken).getValue().equals("}"))
-            error(1);	
+        while(!tokens.get(currentToken).getValue().equals("}"))
+            RULE_METHODS();	
         System.out.println("- }");
 	}
 
@@ -66,10 +66,11 @@ public class TheParser {
 
 		if(!tokens.get(currentToken).getValue().equals(")"))
             error(2);
+        
         currentToken++;
         System.out.println("-- )");
 
-		if(tokens.get(currentToken).getValue().equals("{"))
+		if(!tokens.get(currentToken).getValue().equals("{"))
             error(2);
 
         currentToken++;
@@ -77,7 +78,7 @@ public class TheParser {
 
 		RULE_BODY();
 
-		if(tokens.get(currentToken).getValue().equals("}"))
+		if(!tokens.get(currentToken).getValue().equals("}"))
             error(2);
 
         currentToken++;
@@ -128,7 +129,6 @@ public class TheParser {
 
 	public void RULE_TYPE(){
 		System.out.println("---- RULE_TYPE");
-        System.out.println(tokens.get(currentToken).getValue());
 
         if(!tokens.get(currentToken).getType().equals("KEYWORD"))
             error(3);
@@ -166,6 +166,12 @@ public class TheParser {
 
 	public void RULE_PARAMS(){
 		System.out.println("----- RULE_PARAMS");
+
+        //NO PARAMS
+        if(tokens.get(currentToken).getValue().equals(")"))
+            return;
+
+        //WITH PARAMS
 		RULE_TYPE();
 		if(tokens.get(currentToken).getType().equals("IDENTIFIER")){
 			currentToken++;
