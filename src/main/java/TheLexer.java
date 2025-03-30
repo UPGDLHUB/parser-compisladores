@@ -92,6 +92,7 @@ public class TheLexer {
 		dfa.addAcceptState("binary", "BINARY");
         dfa.addAcceptState("hex", "HEX");
         dfa.addAcceptState("octal", "OCTAL");
+		dfa.addAcceptState("s1", "INTEGER");
         dfa.addAcceptState("integer", "INTEGER");
         dfa.addAcceptState("decimal", "DECIMAL");
         dfa.addAcceptState("decimal_exp", "DECIMAL");

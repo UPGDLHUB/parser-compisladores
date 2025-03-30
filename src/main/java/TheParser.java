@@ -148,7 +148,33 @@ public class TheParser {
     }
 
     public void RULE_FOR(){
-        error(4);
+        System.out.println("-- RULE_FOR");
+		if(tokens.get(currentToken).getValue().equals("for"))
+			currentToken++;
+		else
+			error(4);
+		if(tokens.get(currentToken).getValue().equals("("))
+			currentToken++;
+		else
+			error(4);
+
+		RULE_VARIABLE();
+		RULE_EXPRESSION();
+		currentToken++;
+		RULE_ASSIGNMENT();
+
+		if(tokens.get(currentToken).getValue().equals(")"))
+			currentToken++;
+		else
+			error(4);
+
+		if(tokens.get(currentToken).getValue().equals("{"))
+			currentToken++;
+		else
+			error(4);
+
+		while(!tokens.get(currentToken).getValue().equals("}"))
+			RULE_BODY();
     }
 
     public void RULE_DO_WHILE(){
@@ -233,7 +259,8 @@ public class TheParser {
 			currentToken++;
 			System.out.println("---- IDENTIFIER");
 		}
-		else return;
+		else
+			error(9);
 		if(tokens.get(currentToken).getValue().equals("=")){
 			currentToken++;
 			System.out.println("---- =");
@@ -446,14 +473,14 @@ public class TheParser {
 			System.out.println("---- {");
 		}
 		else {
-			error(12);
+			RULE_BODY();
 		}
-		RULE_BODY();
+
+		while(!tokens.get(currentToken).getValue().equals("}")){
+			RULE_BODY();
+		}
 		if(tokens.get(currentToken).getValue().equals("}")){
 			System.out.println("---- }");
-		}
-		else {
-			error(12);
 		}
 	}
 
@@ -485,9 +512,12 @@ public class TheParser {
 			System.out.println("---- {");
 		}
 		else {
-			error(13);
+			RULE_BODY();
 		}
-		RULE_BODY();
+
+		while(!tokens.get(currentToken).getValue().equals("}")) {
+			RULE_BODY();
+		}
 		if(tokens.get(currentToken).getValue().equals("}")){
 			currentToken++;
 			System.out.println("---- }");
@@ -504,9 +534,12 @@ public class TheParser {
 				System.out.println("---- {");
 			}
 			else {
-				error(13);
+				RULE_BODY();
 			}
-			RULE_BODY();
+			while (!tokens.get(currentToken).getValue().equals("}")) {
+				RULE_BODY();
+			}
+
 			if(tokens.get(currentToken).getValue().equals("}")){
 				System.out.println("---- }");
 			}
