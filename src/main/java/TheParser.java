@@ -39,8 +39,17 @@ public class TheParser {
 
         currentToken++;
 
-        while(!tokens.get(currentToken).getValue().equals("}"))
-            RULE_METHODS();	
+        while(!tokens.get(currentToken).getValue().equals("}")){
+			if(tokens.get(currentToken + 2).getValue().equals("("))
+				RULE_METHODS();
+			else{
+				if(tokens.get(currentToken).getType().equals("KEYWORD"))
+					RULE_VARIABLE();
+				else
+					RULE_ASSIGNMENT();
+				currentToken++;
+			}
+		}
         System.out.println("- }");
 	}
 

@@ -1,4 +1,6 @@
 class Student {
+    int t;
+    t = 1;
 
     void method1() {
         int x;
