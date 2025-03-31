@@ -185,6 +185,34 @@ public class TheParser {
         error(6);
     }
 
+	private void SWITCHCASE(){
+		System.out.println("-- SWITCHCASE");
+
+		if(tokens.get(currentToken).getValue().equals("case"))
+			currentToken++;
+		else
+			error(6);
+
+		RULE_C();
+		if(tokens.get(currentToken).getValue().equals(":"))
+			currentToken++;
+		else
+			error(6);
+
+		while (!tokens.get(currentToken).getValue().equals("break"))
+			RULE_BODY();
+
+		if(tokens.get(currentToken).getValue().equals("break")){
+			System.out.println("-- BREAK");
+			currentToken++;
+		}
+
+		if(tokens.get(currentToken).getValue().equals(";"))
+			currentToken++;
+		else
+			error(6);
+	}
+
 	public void RULE_TYPE(){
 		System.out.println("---- RULE_TYPE");
 
@@ -511,7 +539,7 @@ public class TheParser {
 			currentToken++;
 			System.out.println("---- {");
 		}
-		else {
+		else{
 			RULE_BODY();
 		}
 
