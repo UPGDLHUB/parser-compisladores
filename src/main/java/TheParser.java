@@ -189,11 +189,53 @@ public class TheParser {
     }
 
     public void RULE_SWITCH(){
-        error(6);
+		System.out.println("-- RULE SWITCH");
+		if(tokens.get(currentToken).getValue().equals("switch"))
+			currentToken++;
+		else
+        	error(6);
+
+		if(tokens.get(currentToken).getValue().equals("("))
+			currentToken++;
+		else
+			error(6);
+
+		RULE_EXPRESSION();
+
+		if(tokens.get(currentToken).getValue().equals(")"))
+			currentToken++;
+		else
+			error(6);
+
+		if(tokens.get(currentToken).getValue().equals("{")){
+			System.out.println("--- {");
+			currentToken++;
+		}
+		else
+			error(6);
+
+		while (!tokens.get(currentToken).getValue().equals("default") && !tokens.get(currentToken).getValue().equals("}"))
+			SWITCHCASE();
+
+		if(tokens.get(currentToken).getValue().equals("}")){
+			System.out.println("--- }");
+		}
+		else if (tokens.get(currentToken).getValue().equals("default")){
+			System.out.println("--- DEFAULT");
+			currentToken++;
+			if(tokens.get(currentToken).getValue().equals(":"))
+				currentToken++;
+			else
+				error(6);
+
+			RULE_BODY();
+		} else
+			error(6);
+		System.out.println("-- END SWITCH");
     }
 
 	private void SWITCHCASE(){
-		System.out.println("-- SWITCHCASE");
+		System.out.println("--- SWITCHCASE");
 
 		if(tokens.get(currentToken).getValue().equals("case"))
 			currentToken++;
@@ -210,7 +252,7 @@ public class TheParser {
 			RULE_BODY();
 
 		if(tokens.get(currentToken).getValue().equals("break")){
-			System.out.println("-- BREAK");
+			System.out.println("---- BREAK");
 			currentToken++;
 		}
 
