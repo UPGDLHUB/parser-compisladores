@@ -535,23 +535,24 @@ public class TheParser {
 		else {
 			error(13);
 		}
+
 		if(tokens.get(currentToken).getValue().equals("{")){
 			currentToken++;
 			System.out.println("---- {");
-		}
-		else{
-			RULE_BODY();
-		}
 
-		while(!tokens.get(currentToken).getValue().equals("}")) {
+			while(!tokens.get(currentToken).getValue().equals("}")) {
+				RULE_BODY();
+			}
+
+			if(tokens.get(currentToken).getValue().equals("}")){
+				currentToken++;
+				System.out.println("---- }");
+			}
+			else {
+				error(13);
+			}
+		} else if(!tokens.get(currentToken).getValue().equals("else")){
 			RULE_BODY();
-		}
-		if(tokens.get(currentToken).getValue().equals("}")){
-			currentToken++;
-			System.out.println("---- }");
-		}
-		else {
-			error(13);
 		}
 
 		if(tokens.get(currentToken).getValue().equals("else")){
@@ -560,19 +561,20 @@ public class TheParser {
 			if(tokens.get(currentToken).getValue().equals("{")){
 				currentToken++;
 				System.out.println("---- {");
-			}
-			else {
-				RULE_BODY();
-			}
-			while (!tokens.get(currentToken).getValue().equals("}")) {
-				RULE_BODY();
-			}
 
-			if(tokens.get(currentToken).getValue().equals("}")){
-				System.out.println("---- }");
+				while (!tokens.get(currentToken).getValue().equals("}")) {
+					RULE_BODY();
+				}
+
+				if(tokens.get(currentToken).getValue().equals("}")){
+					System.out.println("---- }");
+				}
+				else {
+					error(13);
+				}
 			}
 			else {
-				error(13);
+				RULE_BODY();
 			}
 		}
 		System.out.println("------ END IF");
