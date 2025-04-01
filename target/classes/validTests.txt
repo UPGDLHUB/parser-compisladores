@@ -9,6 +9,8 @@ class Student {
 
         if(true) return; else return;
 
+        while(true)
+            hello_world();
     }
     void method2(int a) {
         do{

@@ -644,6 +644,8 @@ public class TheParser {
 		}
 		else {
 			RULE_BODY();
+            currentToken -= 1;
+            return;
 		}
 
 		while(!tokens.get(currentToken).getValue().equals("}")){
