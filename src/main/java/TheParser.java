@@ -92,6 +92,7 @@ public class TheParser {
         currentToken++;
         System.out.println("-- }");
 	}
+
 	
 	public void RULE_BODY() {
 		System.out.println("-- RULE_BODY"); 
@@ -194,7 +195,48 @@ public class TheParser {
     }
 
     public void RULE_DO_WHILE(){
-        error(5);
+        if(!tokens.get(currentToken).getValue().equals("do"))
+            error(4);
+
+        currentToken++;
+
+        if(!tokens.get(currentToken).getValue().equals("{"))
+            error(4);
+
+        currentToken++;
+
+		while(!tokens.get(currentToken).getValue().equals("}")){
+			System.out.println(tokens.get(currentToken));
+			System.out.println("FOR BODY");
+			RULE_BODY();
+		}
+        currentToken++;
+
+        if(tokens.get(currentToken).getValue().equals("while")){
+			currentToken++;
+			System.out.println("------ WHILE");
+		}
+		else return;
+		if(tokens.get(currentToken).getValue().equals("(")){
+			currentToken++;
+			System.out.println("---- (");
+		}
+		else {
+			error(12);
+		}
+		RULE_EXPRESSION();
+		if(tokens.get(currentToken).getValue().equals(")")){
+			currentToken++;
+			System.out.println("---- )");
+		}
+		else {
+			error(12);
+		}
+
+        if(!tokens.get(currentToken).getValue().equals(";"))
+            error(4);
+
+		System.out.println("-- END DO WHILE");
     }
 
     public void RULE_SWITCH(){
