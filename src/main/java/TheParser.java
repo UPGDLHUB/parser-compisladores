@@ -189,8 +189,12 @@ public class TheParser {
 
 		if(tokens.get(currentToken).getValue().equals("{"))
 			currentToken++;
-		else
-			error(4);
+		else{
+            RULE_BODY();
+            currentToken -= 1;
+		    System.out.println("-- END FOR");
+            return;
+        }
 
 		System.out.println("-- {");
 
