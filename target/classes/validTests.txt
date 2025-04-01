@@ -1,0 +1,47 @@
+class Student {
+
+    void method1() {
+        for(int i = 0; i < 0; i = i + 1){
+            int x = 0;
+        }
+
+    }
+    void method2(int a) {
+        do{
+            int x = 0;
+        }while(i < 0);
+    }
+    void method3(int a, int b) {
+        int x = 0;
+        switch(x){
+            case 1:
+            case 2:
+            case 3:
+                int y = 0;
+                break;
+            default:
+                hello = "world";
+                break;
+            case 10:
+                int x = 0;
+                break;
+        }
+        switch(x){
+            case 1:
+            case 2:
+            case 3:
+                int y = 0;
+            default:
+                hello = "world";
+            case 10:
+                int x = 0;
+        }
+    }
+    void method4(float a, int b, char c, String $valid_identifier) {
+        while(true){
+            int i = 0;
+        }
+    }
+
+}
+
