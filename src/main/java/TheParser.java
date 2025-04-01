@@ -180,7 +180,10 @@ public class TheParser {
             error(4);
         currentToken++;
 
-		RULE_ASSIGNMENT();
+        if(tokens.get(currentToken + 1).getValue().equals("="))
+            RULE_ASSIGNMENT();
+        else
+            RULE_EXPRESSION();
 
 		if(tokens.get(currentToken).getValue().equals(")"))
 			currentToken++;
@@ -514,17 +517,27 @@ public class TheParser {
 			}
 		}
 	}
-	
+
 	public void RULE_E() {
 		System.out.println("------- RULE_E");
 		RULE_A();
-		while (tokens.get(currentToken).getValue().equals("-")	|| tokens.get(currentToken).getValue().equals("+")) {
-			currentToken++;
+		while (tokens.get(currentToken).getValue().equals("-")
+			| tokens.get(currentToken).getValue().equals("+")
+		) {
 			System.out.println("------- + or -");
-			RULE_A();
+			if(tokens.get(currentToken+1).getValue().equals("+") || tokens.get(currentToken+1).getValue().equals("-")){
+				currentToken++;
+				System.out.println("------- ++ or --");
+				currentToken++;
+				return;
+			}
+			else {
+				currentToken++;
+				RULE_A();
+			}
 		}
 		
-	}
+	}	
 	
 	public void RULE_A() {
 		System.out.println("-------- RULE_A");
