@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestTheParser" time="0.134" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestTheParser" time="0.131" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
     <property name="sun.boot.library.path" value="D:\software\java\jdk21\bin"/>
-    <property name="sun.java.command" value="C:\Users\solor\AppData\Local\Temp\surefire15225180717811325952\surefirebooter-20250401002316243_3.jar C:\Users\solor\AppData\Local\Temp\surefire15225180717811325952 2025-04-01T00-23-15_932-jvmRun1 surefire-20250401002316243_1tmp surefire_0-20250401002316243_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\solor\AppData\Local\Temp\surefire18037375548411056552\surefirebooter-20250401002851915_3.jar C:\Users\solor\AppData\Local\Temp\surefire18037375548411056552 2025-04-01T00-28-51_591-jvmRun1 surefire-20250401002851915_1tmp surefire_0-20250401002851915_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\UP\8vo Semestre\Compiladores\parser-compisladores\target\test-classes;D:\UP\8vo Semestre\Compiladores\parser-compisladores\target\classes;C:\Users\solor\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\solor\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\solor\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\solor\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\solor\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\solor\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\solor\AppData\Local\Temp\surefire15225180717811325952\surefirebooter-20250401002316243_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\solor\AppData\Local\Temp\surefire18037375548411056552\surefirebooter-20250401002851915_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.5+9-LTS-239"/>
@@ -60,7 +60,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testParserInputOne" classname="TestTheParser" time="0.054">
+  <testcase name="testParserInputOne" classname="TestTheParser" time="0.051">
     <system-out><![CDATA[testing method declaration ==================================================================
 - RULE_PROGRAM
 - CLASS
@@ -130,7 +130,7 @@
 - }
 ]]></system-out>
   </testcase>
-  <testcase name="testParserInputTwo" classname="TestTheParser" time="0.015">
+  <testcase name="testParserInputTwo" classname="TestTheParser" time="0.014">
     <system-out><![CDATA[testing assignments =========================================================================
 - RULE_PROGRAM
 - CLASS
@@ -456,7 +456,7 @@ Token(value=w, type=IDENTIFIER)
 - }
 ]]></system-out>
   </testcase>
-  <testcase name="testParserInputZero" classname="TestTheParser" time="0.004">
+  <testcase name="testParserInputZero" classname="TestTheParser" time="0.005">
     <system-out><![CDATA[testing class declaration ===================================================================
 - RULE_PROGRAM
 - CLASS
@@ -465,7 +465,7 @@ Token(value=w, type=IDENTIFIER)
 - }
 ]]></system-out>
   </testcase>
-  <testcase name="testParserValidTest" classname="TestTheParser" time="0.015">
+  <testcase name="testParserValidTest" classname="TestTheParser" time="0.01">
     <system-out><![CDATA[testing input ==========================================================================
 - RULE_PROGRAM
 - CLASS
@@ -690,7 +690,6 @@ Token(value=switch, type=KEYWORD)
 ---------- RULE_C
 ---------- INTEGER
 ---- BREAK
-Token(value=}, type=DELIMITER)
 -- END SWITCH
 Token(value=switch, type=KEYWORD)
 -- RULE_BODY
@@ -757,8 +756,6 @@ Token(value=switch, type=KEYWORD)
 --------- RULE_B
 ---------- RULE_C
 ---------- INTEGER
----- BREAK
-Token(value=}, type=DELIMITER)
 -- END SWITCH
 -- }
 -- RULE_METHODS
@@ -818,7 +815,7 @@ Token(value=while, type=KEYWORD)
 - }
 ]]></system-out>
   </testcase>
-  <testcase name="testParserInputThree" classname="TestTheParser" time="0.015">
+  <testcase name="testParserInputThree" classname="TestTheParser" time="0.016">
     <system-out><![CDATA[testing statements ==========================================================================
 - RULE_PROGRAM
 - CLASS
@@ -1557,8 +1554,6 @@ Token(value=switch, type=KEYWORD)
 --------- RULE_B
 ---------- RULE_C
 ---------- INTEGER
-Token(value=}, type=DELIMITER)
-Token(value=}, type=DELIMITER)
 Token(value=return, type=KEYWORD)
 -- RULE_BODY
 ------ RULE_RETURN

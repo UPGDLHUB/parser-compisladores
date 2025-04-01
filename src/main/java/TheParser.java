@@ -308,7 +308,6 @@ public class TheParser {
 
             if(tokens.get(currentToken).getValue().equals("case")){
                 SWITCHCASE();
-                System.out.println(tokens.get(currentToken));
             }
 
 		} else
@@ -348,7 +347,6 @@ public class TheParser {
             return;
 		}
 		if(tokens.get(currentToken).getValue().equals("}")){
-            currentToken++;
             return;
 		}
 
