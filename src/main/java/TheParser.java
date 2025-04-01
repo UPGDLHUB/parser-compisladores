@@ -288,8 +288,12 @@ public class TheParser {
 			else
 				error(6);
 
-		    while (!tokens.get(currentToken).getValue().equals("break") && !tokens.get(currentToken).getValue().equals("case"))
+		    while (!tokens.get(currentToken).getValue().equals("break") && !tokens.get(currentToken).getValue().equals("case") && !tokens.get(currentToken).getValue().equals("}"))
 			    RULE_BODY();
+
+            if(tokens.get(currentToken).getValue().equals("}")){
+                return;
+            }
 
 		    if(tokens.get(currentToken).getValue().equals("break")){
 			    System.out.println("---- BREAK");
@@ -303,8 +307,8 @@ public class TheParser {
             }
 
             if(tokens.get(currentToken).getValue().equals("case")){
-                System.out.println("hell");
                 SWITCHCASE();
+                System.out.println(tokens.get(currentToken));
             }
 
 		} else
@@ -329,7 +333,7 @@ public class TheParser {
 			error(7);
 
 
-		while (!tokens.get(currentToken).getValue().equals("break") && !tokens.get(currentToken).getValue().equals("case") && !tokens.get(currentToken).getValue().equals("default"))
+		while (!tokens.get(currentToken).getValue().equals("break") && !tokens.get(currentToken).getValue().equals("case") && !tokens.get(currentToken).getValue().equals("default")&& !tokens.get(currentToken).getValue().equals("}"))
 			RULE_BODY();
 
 		if(tokens.get(currentToken).getValue().equals("break")){
@@ -341,6 +345,10 @@ public class TheParser {
             SWITCHCASE();
 		}
 		if(tokens.get(currentToken).getValue().equals("default")){
+            return;
+		}
+		if(tokens.get(currentToken).getValue().equals("}")){
+            currentToken++;
             return;
 		}
 

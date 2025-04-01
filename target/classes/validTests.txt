@@ -35,6 +35,7 @@ class Student {
                 hello = "world";
             case 10:
                 int x = 0;
+                break;
         }
     }
     void method4(float a, int b, char c, String $valid_identifier) {
